@@ -1,9 +1,9 @@
-﻿name: GGG
+﻿name: CI
 
 on: push
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -15,4 +15,6 @@ jobs:
         dotnet-version: 3.1.402
     - name: Check dotnet
       run: dotnet --info
+    - name: Publish
+      run: dotnet publish
 

@@ -18,4 +18,8 @@ jobs:
 
     - name: Publish
       run: dotnet publish
-
+      
+    - name: Create Zip 
+      uses: montudor/action-zip@v0.1.0
+      with:
+        args: zip -qq -r publish.zip _publish

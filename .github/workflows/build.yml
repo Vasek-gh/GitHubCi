@@ -8,9 +8,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Setup
-      run: echo GGG $DOTNET_CLI_TELEMETRY_OPTOUT
+    - name: Set env vars
       env:
+        DOTNET_NOLOGO: true
         DOTNET_CLI_TELEMETRY_OPTOUT: true
 
     - name: Install dotnet
@@ -27,7 +27,7 @@ jobs:
     - name: Publish
       run: dotnet publish --nologo --no-build MySuperService/MySuperService.csproj
 
-    - name: Create Zip
+    - name: Create zip
       uses: montudor/action-zip@v0.1.0
       with:
         args: zip -qq -r publish.zip _publish

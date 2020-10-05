@@ -9,7 +9,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Setup
-      run: echo $DOTNET_CLI_TELEMETRY_OPTOUT
+      run: echo "GGG $DOTNET_CLI_TELEMETRY_OPTOUT"
       with:
         DOTNET_CLI_TELEMETRY_OPTOUT: true
 

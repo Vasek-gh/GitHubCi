@@ -14,13 +14,13 @@ jobs:
         dotnet-version: 3.1.402
 
     - name: Build
-      run: dotnet build
+      run: dotnet build --nologo
 
     - name: Test
-      run: dotnet test MySuperService.Tests/MySuperService.Tests.csproj
+      run: dotnet test --nologo MySuperService.Tests/MySuperService.Tests.csproj
 
     - name: Publish
-      run: dotnet publish --no-build
+      run: dotnet publish --nologo --no-build MySuperService/MySuperService.csproj
 
     - name: Create Zip
       uses: montudor/action-zip@v0.1.0

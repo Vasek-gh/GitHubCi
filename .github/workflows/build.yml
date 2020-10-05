@@ -3,6 +3,19 @@
 on: push
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Install dotnet
+      uses: actions/setup-dotnet@v1.7.2
+      with:
+        dotnet-version: 3.1.402
+
+    - name: build
+      run: dotnet build
+
   publish:
     runs-on: ubuntu-latest
     steps:
@@ -13,13 +26,10 @@ jobs:
       with:
         dotnet-version: 3.1.402
 
-    - name: Check dotnet
-      run: dotnet --info
-
     - name: Publish
       run: dotnet publish
-      
-    - name: Create Zip 
+
+    - name: Create Zip
       uses: montudor/action-zip@v0.1.0
       with:
         args: zip -qq -r publish.zip _publish

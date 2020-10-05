@@ -3,7 +3,7 @@
 on: push
 
 jobs:
-  build:
+  Build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -13,21 +13,14 @@ jobs:
       with:
         dotnet-version: 3.1.402
 
-    - name: build
+    - name: Build
       run: dotnet build
 
-  publish:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-
-    - name: Install dotnet
-      uses: actions/setup-dotnet@v1.7.2
-      with:
-        dotnet-version: 3.1.402
+    - name: Test
+      run: dotnet test MySuperService.Test/MySuperService.Test.csproj
 
     - name: Publish
-      run: dotnet publish
+      run: dotnet publish --no-build
 
     - name: Create Zip
       uses: montudor/action-zip@v0.1.0

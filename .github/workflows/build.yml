@@ -9,6 +9,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Set env vars
+      run:
       env:
         DOTNET_NOLOGO: true
         DOTNET_CLI_TELEMETRY_OPTOUT: true

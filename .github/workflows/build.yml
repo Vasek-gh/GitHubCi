@@ -17,7 +17,7 @@ jobs:
       run: dotnet build
 
     - name: Test
-      run: dotnet test MySuperService.Test/MySuperService.Test.csproj
+      run: dotnet test MySuperService.Tests/MySuperService.Tests.csproj
 
     - name: Publish
       run: dotnet publish --no-build

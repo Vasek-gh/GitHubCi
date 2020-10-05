@@ -8,6 +8,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Setup
+      run: echo $DOTNET_CLI_TELEMETRY_OPTOUT
+      with:
+         DOTNET_CLI_TELEMETRY_OPTOUT: true
+
     - name: Install dotnet
       uses: actions/setup-dotnet@v1.7.2
       with:

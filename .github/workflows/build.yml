@@ -21,11 +21,18 @@ jobs:
 
     - name: Print ref
       run: echo $GITHUB_REF
+      echo "::set-output name=action_fruit::strawberry"
 
     # - name: Install dotnet
     #   uses: actions/setup-dotnet@v1.7.2
     #   with:
     #     dotnet-version: 3.1.402
+
+    - name: Get full version
+      run: echo ::set-output name=full_version::"qwerty"
+
+    - name: Print full version
+      run: echo ${{ steps.vars.outputs.full_version }}
 
     # - name: Build
     #   run: dotnet build --nologo

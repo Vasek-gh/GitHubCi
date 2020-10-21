@@ -22,14 +22,16 @@ jobs:
     - name: Print ref
       run: echo $GITHUB_REF
 
-    # - name: Install dotnet
-    #   uses: actions/setup-dotnet@v1.7.2
-    #   with:
-    #     dotnet-version: 3.1.402
+    - name: Install dotnet
+      uses: actions/setup-dotnet@v1.7.2
+      with:
+        dotnet-version: 3.1.402
 
     - name: Get full version
       id: get_full_version
-      run: echo "::set-output name=full_version::qwerty"
+      run: |
+        dotnet msbuild -target:GetFullVersion MySuperService/MySuperService.csproj -nologo
+        echo "::set-output name=full_version::$(cat MySuperService/ver.tmp.txt)"
 
     - name: Print full version
       run: echo ${{ steps.get_full_version.outputs.full_version }}

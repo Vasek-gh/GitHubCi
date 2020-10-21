@@ -5,4 +5,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <Target Name="GetFullVersion" DependsOnTargets="__SetInformationalVersion">
+      <Message Importance="High" Text="$(InformationalVersion)"></Message>
+      <WriteLinesToFile File="ver.tmp.txt" Overwrite="true" Lines="$(InformationalVersion)"/>
+  </Target>
+
 </Project>

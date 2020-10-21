@@ -28,10 +28,11 @@ jobs:
     #     dotnet-version: 3.1.402
 
     - name: Get full version
+      id: get_full_version
       run: echo "::set-output name=full_version::qwerty"
 
     - name: Print full version
-      run: echo ${{ steps.vars.outputs.full_version }}
+      run: echo ${{ steps.vars.get_full_version.full_version }}
 
     # - name: Build
     #   run: dotnet build --nologo

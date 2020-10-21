@@ -21,7 +21,6 @@ jobs:
 
     - name: Print ref
       run: echo $GITHUB_REF
-      echo "::set-output name=action_fruit::strawberry"
 
     # - name: Install dotnet
     #   uses: actions/setup-dotnet@v1.7.2

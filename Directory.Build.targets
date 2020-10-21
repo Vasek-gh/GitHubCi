@@ -1,0 +1,11 @@
+<Project>
+    <Target Name="__SetInformationalVersion" BeforeTargets="BeforeBuild">
+        <Exec Command="git rev-parse HEAD" ConsoleToMSBuild="true" EchoOff="true">
+            <Output TaskParameter="ConsoleOutput" PropertyName="Head" />
+        </Exec>
+
+        <CreateProperty Value="$(MajorVer).$(MinorVer).$(PatchVer).$(Head)">
+            <Output TaskParameter="Value" PropertyName="InformationalVersion"/>
+        </CreateProperty>
+    </Target>
+</Project>

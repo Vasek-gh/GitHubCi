@@ -27,33 +27,33 @@ jobs:
       with:
         dotnet-version: 3.1.402
 
+    - name: Build
+      run: dotnet build --nologo
+
+    - name: Test
+      run: dotnet test --nologo MySuperService.Tests/MySuperService.Tests.csproj
+
+    # - name: Publish
+    #   run: dotnet publish --nologo --no-build MySuperService/MySuperService.csproj
+
     - name: Get full version
       id: get_full_version
       run: |
         dotnet msbuild -target:GetFullVersion MySuperService/MySuperService.csproj -nologo
         echo "::set-output name=full_version::$(cat MySuperService/ver.tmp.txt)"
 
-    - name: Print full version
-      run: echo ${{ steps.get_full_version.outputs.full_version }}
-
-    # - name: Build
-    #   run: dotnet build --nologo
-
-    # - name: Test
-    #   run: dotnet test --nologo MySuperService.Tests/MySuperService.Tests.csproj
-
-    # - name: Publish
-    #   run: dotnet publish --nologo --no-build MySuperService/MySuperService.csproj
+    # - name: Print full version
+    #   run: echo ${{ steps.get_full_version.outputs.full_version }}
 
     # - name: Create zip
     #   uses: montudor/action-zip@v0.1.0
     #   with:
     #     args: zip -qq -r publish.zip _publish
 
-    # - name: Create release
-    #   uses: actions/create-release@v1
-    #   env:
-    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    #   with:
-    #       tag_name: auto_tag1
-    #       release_name: Release auto_tag1
+    - name: Create release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+          tag_name: v${{ steps.get_full_version.outputs.full_version }}
+          release_name: Release ${{ steps.get_full_version.outputs.full_version }}

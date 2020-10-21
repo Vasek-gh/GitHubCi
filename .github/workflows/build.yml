@@ -28,7 +28,7 @@ jobs:
     #     dotnet-version: 3.1.402
 
     - name: Get full version
-      run: echo ::set-output name=full_version::"qwerty"
+      run: echo "::set-output name=full_version::qwerty"
 
     - name: Print full version
       run: echo ${{ steps.vars.outputs.full_version }}

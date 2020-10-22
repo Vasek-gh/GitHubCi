@@ -21,14 +21,14 @@ jobs:
       with:
         dotnet-version: 3.1.402
 
-    - name: Build
-      run: dotnet build --nologo
+    # - name: Build
+    #   run: dotnet build
 
     - name: Test
-      run: dotnet test --nologo MySuperService.Tests/MySuperService.Tests.csproj
+      run: dotnet test MySuperService.Tests/MySuperService.Tests.csproj
 
     - name: Publish
-      run: dotnet publish --nologo --no-build MySuperService/MySuperService.csproj
+      run: dotnet publish --runtime win-x64 --self-contained false MySuperService/MySuperService.csproj
 
     - name: Get full version
       id: get_full_version
@@ -42,7 +42,7 @@ jobs:
     - name: Create zip
       uses: montudor/action-zip@v0.1.0
       with:
-        args: zip -qq -r publish.zip _publish
+        args: zip -qq -r publish.zip _publish/
 
     - name: Create release
       id: create_release
